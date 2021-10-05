@@ -77,7 +77,7 @@ struct LineChartView: View {
         
         self.rawData = data.map{$0.data}
         self.rawLabels = data.map{$0.labels}
-        self.data = ChartData((points: data.map{$0.data}))
+        self.data = ChartData(points: data.map{$0.data})
         self.title = title
         self.legend = legend
         self.style = style
@@ -155,13 +155,13 @@ struct LineChartView: View {
                                 if ((self.displayChartStats)) {
                                     if (self.showIndicatorDot) {
                                         if (self.internalRate != nil) {
-                                            Text("\(currentLabel) (\(self.internalRate!)%)")
+                                            Text("\(currentLabel ?? "") (\(self.internalRate!)%)")
                                         } else {
-                                            Text("\(currentLabel)")
+                                            Text("\(currentLabel ?? "")")
                                         }
                                     } else if (self.rawLabels.last != nil) {
                                         if (self.internalRate != nil) {
-                                            Text("\(rawLabels.last) (\(self.internalRate!)%)").font(self.priceFont)
+                                            Text("\(rawLabels.last!) (\(self.internalRate!)%)").font(self.priceFont)
                                         } else {
                                             Text("\(self.rawLabels.last!)")
                                         }
