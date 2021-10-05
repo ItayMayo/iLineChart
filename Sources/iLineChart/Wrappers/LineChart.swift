@@ -9,7 +9,7 @@ import SwiftUI
 import iColor
 
 public struct iLineChart: View {
-    public var data: [Double]
+    public var data: [(data: Double, labels: String)]
     public var title: String?
     public var subtitle: String?
     public var floatingPointNumberFormat: String
@@ -30,7 +30,7 @@ public struct iLineChart: View {
     private var edgesIgnored: Edge.Set
     
     
-    public init (data: [Double],
+    public init (data: [(data: Double, labels: String)],
                  title: String? = nil,
                  subtitle: String? = nil,
                  style: LineChartStyle = .primary,
