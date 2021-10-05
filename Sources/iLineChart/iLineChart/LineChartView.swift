@@ -239,7 +239,7 @@ struct LineChartView: View {
     }
 }
 
-struct WidgetView_Previews: PreviewProvider {
+/*struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Line chart", legend: "Basic")
@@ -249,4 +249,4 @@ struct WidgetView_Previews: PreviewProvider {
             .environment(\.colorScheme, .light)
         }
     }
-}
+}*/
