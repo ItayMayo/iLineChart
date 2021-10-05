@@ -19,6 +19,7 @@ struct LineChartView: View {
     var indicatorKnob: Color
     
     private var rawData: [Double]
+    private var rawLabels: [String]
     public var formSize:CGSize
     public var dropShadow: Bool
     public var valueSpecifier:String
@@ -47,10 +48,13 @@ struct LineChartView: View {
             }
         }
     }
+    
+    @State private var currentLabel:String?
+    
     var frame = CGSize(width: 180, height: 120)
     private var rateValue: Int?
     
-    init(data: [Double],
+    init(data: [(data: Double, labels: String)],
                 title: String? = nil,
                 legend: String? = nil,
                 style: ChartStyle = Styles.lineChartStyleOne,
@@ -71,8 +75,9 @@ struct LineChartView: View {
                 fullScreen: Bool = false
                 ) {
         
-        self.rawData = data
-        self.data = ChartData(points: data)
+        self.rawData = data.map{$0.data}
+        self.rawLabels = data.map{$0.labels}
+        self.data = ChartData((points: data.map{$0.data}))
         self.title = title
         self.legend = legend
         self.style = style
@@ -150,15 +155,15 @@ struct LineChartView: View {
                                 if ((self.displayChartStats)) {
                                     if (self.showIndicatorDot) {
                                         if (self.internalRate != nil) {
-                                            Text("\(String(format: self.valueSpecifier, self.currentValue)) (\(self.internalRate!)%)")
+                                            Text("\(currentLabel) (\(self.internalRate!)%)")
                                         } else {
-                                            Text("\(String(format: self.valueSpecifier, self.currentValue))")
+                                            Text("\(currentLabel)")
                                         }
-                                    } else if (self.rawData.last != nil) {
+                                    } else if (self.rawLabels.last != nil) {
                                         if (self.internalRate != nil) {
-                                            Text("\(String(format: self.valueSpecifier, self.rawData.last!)) (\(self.internalRate!)%)").font(self.priceFont)
+                                            Text("\(rawLabels.last) (\(self.internalRate!)%)").font(self.priceFont)
                                         } else {
-                                            Text("\(String(format: self.valueSpecifier, self.rawData.last!))")
+                                            Text("\(self.rawLabels.last!)")
                                         }
                                     } else if (self.internalRate != nil) {
                                         Text("(\(self.internalRate!)%)")
@@ -227,6 +232,7 @@ struct LineChartView: View {
         let index:Int = Int(round((toPoint.x)/stepWidth))
         if (index >= 0 && index < points.count){
             self.currentValue = points[index]
+            self.currentLabel = rawLabels[index]
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
         }
         return .zero
