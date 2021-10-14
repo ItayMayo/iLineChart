@@ -7,10 +7,9 @@
 //
 
 import SwiftUI
-import iColor
 
 struct IndicatorPoint: View {
-    var indicatorKnob: Color = Color.neonPink
+    var indicatorKnob: Color = Color.pink
     
     var body: some View {
         ZStack{

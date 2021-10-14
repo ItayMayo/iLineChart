@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import iColor
 
 public struct iLineChart: View {
     public var data: [(data: Double, labels: String)]
@@ -41,7 +40,7 @@ public struct iLineChart: View {
                  subtitleColor: Color? = nil,
                  numberColor: Color? = nil,
                  curvedLines: Bool = true,
-                 cursorColor: Color = Color.neonPink,
+                 cursorColor: Color = Color.pink,
                  displayChartStats: Bool = false,
                  minWidth: CGFloat = 0,
                  minHeight: CGFloat = 0,
@@ -130,8 +129,8 @@ public enum PieChartStyle {
 
 public var myStyle: ChartStyle = ChartStyle(
     backgroundColor: Color.white,
-    accentColor: Color.neonOrange,
-    secondGradientColor: Color.neonRed,
+    accentColor: Color.orange,
+    secondGradientColor: Color.red,
     textColor: Color.black,
     legendTextColor: Color.gray,
     dropShadowColor: Color.gray)
