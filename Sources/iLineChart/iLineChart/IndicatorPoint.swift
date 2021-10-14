@@ -19,7 +19,7 @@ struct IndicatorPoint: View {
                 .stroke(Color.white, style: StrokeStyle(lineWidth: 4))
         }
         .frame(width: 14, height: 14)
-        .shadow(color: Color.lightGray, radius: 6, x: 0, y: 6)
+        .shadow(color: Color(UIColor.lightGray), radius: 6, x: 0, y: 6)
     }
 }
 
